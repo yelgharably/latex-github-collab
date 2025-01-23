@@ -1,87 +1,115 @@
-\documentclass[]{article}
-
-\title{Collaborative LaTeX Writing using Git and Github Actions}
-\author{Laurence Kedward}
-
+\documentclass[14pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{anyfontsize}
+\usepackage{t1enc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{letterpaper, portrait, margin=0.85ian}
+\usepackage{xcolor}
+\definecolor{shadecolor}{RGB}{199,239,247}
+\usepackage[version=4]{mhchem}
+\usepackage{chemist}
+\usepackage{float}
+\usepackage{array}
+\usepackage[document]{ragged2e}
+\usepackage[english]{babel}
+\usepackage{csquotes}
 \usepackage{listings}
-\usepackage[colorlinks,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[backend=biber, isbn=false, doi=false]{biblatex-chicago}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{width=9cm}
+\usepackage{amssymb}
+\usepackage{blindtext}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{tabularx} % Required for the tabularx environment
+\usepackage{booktabs} % Required for nicer horizontal rules
+\usepackage{array} % Required for defining custom column types
+\usepackage{chemformula}
+\usepackage{multirow}
+
+\title{\fontsize{32}{36}\selectfont RC Circuits and Filters}
+\author{\fontsize{16}{20}\selectfont Sophie Bergstrom, Gavi Fischer, Youssef El Gharably}
+\date{PHY422 - Advanced Methods of Physics and Astrophysics Lab Report}
+
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% Chem Equations
+% \ch{CH3COOH <=> CH3COO- + H+}
+
+% Figures 
+%\begin{figure} [H]
+%    \centering
+%    \includegraphics[width=140mm,scale=1]{my_q.png}
+%    \caption{$Q$ values plotted logarithmically over the course of 28 days with a rational function fit. The horizontal black dashed line represents my estimation of the equilibrium value, 2.8.}
+%    \label{fig:my_label}
+%\end{figure}
+
+% Cool Table
+%\begin{table}[H]
+%    \centering
+%    \begin{tabularx}{\textwidth}{CCCCCC} % Adjust the number of 'C's as needed
+	%        \toprule
+	%        Titration Number & Equivalence Point Volume (mL) & Initial Moles of Acetic Acid (mol) & Initial Molarity of Acetic Acid (M or %mol/L) & Moles at Equivalence (mol) & Molarity at Equivalence (M or mol/L) \\ 
+	%        \midrule 
+	%        1 & 29.2 & 0.00271 & 0.0201 & $5.48\times 10^{-5}$  & $4.25\times 10^{-4}$ \\
+	%        2 & 44.4 & 0.00407 & 0.0282 & $2.74\times 10^{-5}$ & $1.90\times 10^{-4}$ \\
+	%        3 & 30.4 & 0.00278 & 0.0213 & $0.91\times 10^{-5}$ & $0.70\times 10^{-4}$ \\
+	%        Avg. & 34.7 & 0.00319 & 0.0232 & $3.04\times 10^{-5}$ & $2.28\times 10^{-4}$ \\
+	%        STD. (Error) & 8.45 & 0.00077 & 0.00438 & $2.30\times 10^{-5}$ & $1.81\times 10^{-4}$\\
+	%        \bottomrule
+	%    \end{tabularx}
+%    \caption{Table showing concentrations and equivalence points of each titration.}
+%    \label{tab:results1}
+% \end{table}
+
 
 \begin{document}
-
 \maketitle
-
-
-Repository available at: \url{https://github.com/LKedward/latex-github-collab}
-
-\section{Compiling Locally}
-
-\subsection{Prerequisites}
-
-Compiling locally is possible with any LaTeX distribution; the github actions workflow running on Ubuntu 20.04 uses the following packages (all installable via `apt`):
-
-\subsection*{Mandatory}
-\begin{itemize}
-	
-	\item \texttt{texlive-latex-recommended}
-	\item \texttt{texlive-latex-extra}
-	
-\end{itemize}
-
-\subsection*{Optional}
-\begin{itemize}
-	
-	\item \texttt{texlive-latex-utils} \quad (for \texttt{texcount})
-	\item \texttt{rubber} \quad (for using the \texttt{Makefile})
-	\item \texttt{perl} \quad (for \texttt{texcount} and \texttt{latexdiff})
-	\item \texttt{latexdiff}
-	
-\end{itemize}
-
-
-\subsection{Makefile}
-
-For convenience a Makefile is included which relies on the [rubber](https://gitlab.com/latex-rubber/rubber/) LaTeX wrapper:
-
-
+\justifying
 \begin{center}
-	\begin{lstlisting}[language=Bash,morekeywords={make}]
-	$ make             # generate paper.pdf
-	$ make clean       # cleanup
-	$ make spellcheck  # run codespell
-	$ make count       # run TexCount
-	$ make diff        # run latexdiff with master
-	\end{lstlisting}
+	\section*{Abstract}
 \end{center}
 
-
-\section{License: MIT}
-
-The Makefile and Github actions workflow are licensed under the MIT license
-
-\begin{quote}
-	MIT License
+\begin{multicols}{2}
+	\section{Introduction}
 	
-	Copyright (c) 2021 Laurence Kedward
+	\section{Theory}
+	(Gain Analysis, will adjust later)\newline In order to reach the complex form of the gain equation, the following expressions was derived:
+	\begin{align}
+		\left| \frac{V_{out}}{V_{in}} \right|_{hp} &= \frac{1}{\sqrt{1+(1/\omega RC)^2}} \\
+		\left| \frac{V_{out}}{V_{in}} \right|_{lp} &= \frac{1}{\sqrt{1+(\omega RC)^2}}
+	\end{align}
+	In order to derive equations (1) and (2), the complex form of Ohm's Law had to be manipulated as follow, noting that the derivation branches off into two when we start treating each of the filters as separate voltage dividers:
+	\begin{align}
+		I = \frac{V}{Z} &= \frac{V}{R+Z_c} \\
+		\frac{V_{out,hp}}{V_{in}} &= \frac{R}{R + Z_c} \\
+		\frac{V_{out,lp}}{V_{in}} &= \frac{Z_c}{R+Z_c}
+	\end{align}
+	\indent where $Z_c$ is represented as follow:
+	\begin{gather}
+		Z_c = \frac{-i}{\omega C}
+	\end{gather}
+	From this point on, we can substitute $Z_c$ from Eq(6) into Eq(4) and Eq(5) separately to find an expression for each of the two filters.
+	\subsection{High-Pass Filter:}
+	\begin{align}
+		\frac{V_{out}}{V_{in}} &= \frac{R}{R-i/\omega C}\cdot \frac{R+i/\omega c}{R+i\omega c} \\
+		&= \frac{R^2 + i (R/\omega C)}{R^2 + 1/(\omega C)^2} \\
+		&= \frac{(R\omega c)^2 + i(R\omega c)}{(R\omega c)^2 + 1} \\
+		&= \frac{(R\omega c)^2}{(R\omega c)^2 + 1} + i\frac{R\omega c}{(R\omega c)^2+1}
+	\end{align}
+	Next step is to calculate the modulus of 
 	
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
 	
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
+	\section{Results and Analysis}
 	
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-	SOFTWARE.
-\end{quote}
-
-
+	\section{Conclusion}
+\end{multicols}
 
 \end{document}
